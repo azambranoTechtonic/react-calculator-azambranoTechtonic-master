@@ -1,40 +1,69 @@
 import React from 'react';
 import logo from './logo.svg';
-import {CalculatorScreen} from './components/calculatorScreen.js'
-import {CalculatorBody} from './components/calculatorBody.js'
+import { CalculatorScreen } from './components/calculatorScreen.js';
+import { CalculatorBody } from './components/calculatorBody.js';
 import './App.css';
-import './bootstrap.css' //THIS FILE HAS BEEN EDITED
+import './bootstrap.css'; //THIS FILE HAS BEEN EDITED
 
 class Calculator extends React.Component {
-  constructor(){
-    super()
-    this.state = {calcScreen:''}
-    this.handleClick = this.handleClick.bind(this)
+  constructor() {
+    super();
+    this.state = { calcScreen: '' };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-
-
-  handleClick(e){
+  handleClick(e) {
     //This function is fired when the onClick prop inside Calculator Body is triggered
-    //<CalculatorBody onClick={this.handleClick}/> this passes the onClick prop down to CalculatorBody
-    //Inside calculator body
 
-    if(e.target.value === 'C'){
-      this.clearInput()
-    }else{
-      let calcString = this.state.calcScreen + e.target.value
-      this.setState({calcScreen:calcString})
+    switch (e.target.value){
+
+      case 'C': this.clearInput();
+        break;
+
+      case '+':
+      case '-':
+      case '*':
+      case '/': this.handleOperator(e.target.value);
+        break;
+
+      case '=': this.handleEqual();
+        break;
+
+      default: let calcString = this.state.calcScreen + e.target.value;
+        this.setState({ calcScreen: calcString });
     }
-    // switch(e.target.value){
-    //   case 'C': this.clearInput();
-    //   break;
-    //   default: let calcString = this.state.calcScreen + e.target.value
-    //   this.setState({calcScreen:calcString})
-    // }
   }
-  clearInput(){
-    this.setState({calcScreen:''})
+
+  handleOperator(op) {
+    this.setState({ firstLeg: this.state.calcScreen, operator: op, calcScreen: '' });
   }
+
+  getResult() {
+
+    switch (this.state.operator){
+      case '+': return parseInt(this.state.firstLeg, 10) + parseInt(this.state.lastLeg, 10);
+      case '-': return parseInt(this.state.firstLeg, 10) - parseInt(this.state.lastLeg, 10);
+      case '*': return parseInt(this.state.firstLeg, 10) * parseInt(this.state.lastLeg, 10);
+      case '/': return parseInt(this.state.firstLeg, 10) / parseInt(this.state.lastLeg, 10);
+
+      default: return false;
+
+    }
+
+  }
+
+  async handleEqual() {
+
+    var lastNum = this.state.calcScreen;
+    await this.setState({ lastLeg: lastNum });
+    let myResult = this.getResult();
+    this.setState({ calcScreen: myResult });
+  }
+
+  clearInput() {
+    this.setState({ calcScreen: '' });
+  }
+
   render() {
     return (
       <div className="App">

@@ -34,16 +34,16 @@ export const CalculatorBody = function(props){
     </div>
     <div className="row padded">
       <div className="col-md-3">
-        place 1 button here
+        <Button onClick={props.onClick} value='1' type="button" className="btn btn-secondary btn-lg" text={1} />
       </div>
       <div className="col-md-3">
-        place 2 button here
+        <Button onClick={props.onClick} value='2' type="button" className="btn btn-secondary btn-lg" text={2} />
       </div>
       <div className="col-md-3">
-        place 3 button here
+        <Button onClick={props.onClick} value='3' type="button" className="btn btn-secondary btn-lg" text={3} />
       </div>
       <div className="col-md-3">
-        place + button here
+        <Button onClick={props.onClick} value='+' type="button" className="btn btn-secondary btn-lg" text={'+'} />
       </div>
     </div>
     <div className="row padded">
