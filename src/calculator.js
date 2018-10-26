@@ -41,10 +41,10 @@ class Calculator extends React.Component {
   getResult() {
 
     switch (this.state.operator){
-      case '+': return parseInt(this.state.firstLeg, 10) + parseInt(this.state.lastLeg, 10);
-      case '-': return parseInt(this.state.firstLeg, 10) - parseInt(this.state.lastLeg, 10);
-      case '*': return parseInt(this.state.firstLeg, 10) * parseInt(this.state.lastLeg, 10);
-      case '/': return parseInt(this.state.firstLeg, 10) / parseInt(this.state.lastLeg, 10);
+      case '+': return parseInt(this.state.firstLeg, 10) + parseInt(this.state.calcScreen, 10);
+      case '-': return parseInt(this.state.firstLeg, 10) - parseInt(this.state.calcScreen, 10);
+      case '*': return parseInt(this.state.firstLeg, 10) * parseInt(this.state.calcScreen, 10);
+      case '/': return parseInt(this.state.firstLeg, 10) / parseInt(this.state.calcScreen, 10);
 
       default: return false;
 
@@ -54,8 +54,11 @@ class Calculator extends React.Component {
 
   async handleEqual() {
 
-    var lastNum = this.state.calcScreen;
-    await this.setState({ lastLeg: lastNum });
+    // var lastNum = this.state.calcScreen;
+    // await this.setState({ lastLeg: lastNum });
+    // let myResult = this.getResult();
+    // this.setState({ calcScreen: myResult });
+
     let myResult = this.getResult();
     this.setState({ calcScreen: myResult });
   }
