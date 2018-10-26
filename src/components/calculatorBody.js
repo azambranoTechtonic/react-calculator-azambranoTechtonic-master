@@ -61,8 +61,14 @@ export const CalculatorBody = function(props){
       </div>
     </div>
     <div className="row padded">
-      <div className="col-md-12">
+      <div className="col-md-6">
         <Button onClick={props.onClick} value='=' type="button" className="btn btn-secondary btn-lg" text={'='} />
+      </div>
+      <div className="col-md-3">
+        <Button onClick={props.onClick} value='P' type="button" className="btn btn-secondary btn-lg" text={'P'} />
+      </div>
+      <div className="col-md-3">
+        <Button onClick={props.onClick} value='Q' type="button" className="btn btn-secondary btn-lg" text={'√'} />
       </div>
     </div>
   </div>)

@@ -20,6 +20,8 @@ class Calculator extends React.Component {
       case 'C': this.clearInput();
         break;
 
+      case 'P':
+      case 'Q':
       case '+':
       case '-':
       case '*':
@@ -45,6 +47,10 @@ class Calculator extends React.Component {
       case '-': return parseInt(this.state.firstLeg, 10) - parseInt(this.state.calcScreen, 10);
       case '*': return parseInt(this.state.firstLeg, 10) * parseInt(this.state.calcScreen, 10);
       case '/': return parseInt(this.state.firstLeg, 10) / parseInt(this.state.calcScreen, 10);
+      case 'Q': var mySqr = Math.sqrt(this.state.firstLeg);
+        return parseInt(mySqr, 10);
+      case 'P': var myPwr = Math.pow(this.state.firstLeg, this.state.calcScreen);
+        return parseInt(myPwr, 10);
 
       default: return false;
 
